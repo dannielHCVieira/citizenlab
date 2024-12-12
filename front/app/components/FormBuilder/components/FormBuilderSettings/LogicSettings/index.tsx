@@ -32,7 +32,7 @@ export type AnswersType =
     }[]
   | undefined;
 
-export const LogicSettings = ({
+const LogicSettings = ({
   pageOptions,
   field,
   builderConfig,
@@ -155,3 +155,10 @@ export const LogicSettings = ({
     </>
   );
 };
+
+LogicSettings.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'LogicSettings',
+};
+
+export default LogicSettings;

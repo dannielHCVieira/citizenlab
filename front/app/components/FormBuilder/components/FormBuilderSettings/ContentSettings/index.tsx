@@ -51,7 +51,7 @@ export const ContentSettings = ({
   if (!isNilOrError(platformLocale)) {
     return (
       <Box mt="16px">
-        {!isFieldGrouping && (
+        {/* {!isFieldGrouping && (
           <>
             <FieldTypeSwitcher
               field={field}
@@ -79,14 +79,14 @@ export const ContentSettings = ({
               />
             </SectionField>
           </>
-        )}
+        )} */}
         {getAdditionalSettings(
           field,
           watch(`customFields.${field.index}.input_type`),
           locales,
           platformLocale
         )}
-        {!isFieldGrouping && (
+        {/* {!isFieldGrouping && (
           <>
             <SectionField id="e2e-required-toggle">
               <Toggle
@@ -100,7 +100,7 @@ export const ContentSettings = ({
               />
             </SectionField>
           </>
-        )}
+        )} */}
       </Box>
     );
   }

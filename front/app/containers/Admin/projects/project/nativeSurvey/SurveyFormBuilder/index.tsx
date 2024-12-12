@@ -74,4 +74,9 @@ const SurveyFormBuilder = () => {
   );
 };
 
+SurveyFormBuilder.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'SurveyFormBuilder',
+};
+
 export default SurveyFormBuilder;

@@ -143,16 +143,16 @@ export function getAdditionalSettings(
     case 'page':
       return (
         <>
-          <PageLayoutSettings
+          {/* <PageLayoutSettings
             field={field}
             pageLayoutName={`customFields.${field.index}.page_layout`}
-          />
+          /> */}
           <FieldGroupSettings locale={platformLocale} field={field} />
-          <PointSettings
+          {/* <PointSettings
             mapConfigIdName={`customFields.${field.index}.map_config_id`}
             pageLayoutName={`customFields.${field.index}.page_layout`}
             field={field}
-          />
+          /> */}
         </>
       );
     case 'section':

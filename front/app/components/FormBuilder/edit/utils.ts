@@ -1,4 +1,7 @@
-import { IFlatCustomField } from 'api/custom_fields/types';
+import {
+  IFlatCustomField,
+  IFlatCustomFieldWithIndex,
+} from 'api/custom_fields/types';
 
 import { questionDNDType } from 'components/FormBuilder/components/FormFields';
 
@@ -15,8 +18,8 @@ const reorder = <ListType>(
 };
 
 export type NestedGroupingStructure = {
-  questions: IFlatCustomField[];
-  groupElement: IFlatCustomField;
+  questions: IFlatCustomFieldWithIndex[];
+  groupElement: IFlatCustomFieldWithIndex;
   id: string;
 };
 
@@ -34,23 +37,47 @@ export type DragAndDropResult = {
   destination: DragOrDroValues | null;
 };
 
+// const getFlatGroupStructure = (
+//   nestedGroupStructure: NestedGroupingStructure[]
+// ): IFlatCustomField[] => {
+//   const flattenedGroupStructure: IFlatCustomField[] = [];
+//   nestedGroupStructure.forEach((group) => {
+//     flattenedGroupStructure.push(group.groupElement);
+//     group.questions.forEach((question) => {
+//       flattenedGroupStructure.push(question);
+//     });
+//   });
+//   return flattenedGroupStructure;
+// };
+
 const getFlatGroupStructure = (
   nestedGroupStructure: NestedGroupingStructure[]
-): IFlatCustomField[] => {
-  const flattenedGroupStructure: IFlatCustomField[] = [];
+): IFlatCustomFieldWithIndex[] => {
+  const flattenedGroupStructure: IFlatCustomFieldWithIndex[] = [];
+
   nestedGroupStructure.forEach((group) => {
-    flattenedGroupStructure.push(group.groupElement);
+    // Add index to the groupElement
+    flattenedGroupStructure.push({
+      ...group.groupElement,
+      index: flattenedGroupStructure.length,
+    });
+
     group.questions.forEach((question) => {
-      flattenedGroupStructure.push(question);
+      // Add index to each question
+      flattenedGroupStructure.push({
+        ...question,
+        index: flattenedGroupStructure.length,
+      });
     });
   });
+
   return flattenedGroupStructure;
 };
 
 const getGroupQuestions = (
   groups: NestedGroupingStructure[],
   groupId: string
-): IFlatCustomField[] => {
+): IFlatCustomFieldWithIndex[] => {
   const group = groups.find(
     (group) => group.id === groupId
   ) as NestedGroupingStructure;
@@ -60,7 +87,7 @@ const getGroupQuestions = (
 export const getReorderedFields = (
   result: DragAndDropResult,
   nestedGroupData: NestedGroupingStructure[]
-): IFlatCustomField[] | undefined => {
+): IFlatCustomFieldWithIndex[] | undefined => {
   const { type, source, destination } = result;
   if (!destination) return;
 
@@ -69,7 +96,7 @@ export const getReorderedFields = (
 
   if (type === questionDNDType) {
     if (sourceGroupId === destinationGroupId) {
-      const updatedOrder = reorder<IFlatCustomField>(
+      const updatedOrder = reorder<IFlatCustomFieldWithIndex>(
         getGroupQuestions(nestedGroupData, sourceGroupId),
         source.index,
         destination.index

@@ -350,4 +350,9 @@ const ConfigSelectWithLocaleSwitcher = ({
   );
 };
 
+ConfigSelectWithLocaleSwitcher.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'ConfigSelectWithLocaleSwitcher',
+};
+
 export default ConfigSelectWithLocaleSwitcher;

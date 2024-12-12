@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Droppable } from 'react-beautiful-dnd';
 
@@ -8,7 +8,7 @@ type DropProps = {
   children: React.ReactNode;
 };
 
-export const Drop = ({ id, type, ...props }: DropProps) => {
+const Drop = memo(({ id, type, ...props }: DropProps) => {
   return (
     <Droppable droppableId={id} type={type}>
       {(provided) => {
@@ -21,4 +21,6 @@ export const Drop = ({ id, type, ...props }: DropProps) => {
       }}
     </Droppable>
   );
-};
+});
+
+export default Drop;

@@ -42,12 +42,12 @@ const FieldGroupSettings = ({ field, locale }: Props) => {
           />
         </SectionField>
       )}
-      <SectionField data-cy="e2e-field-group-description-multiloc">
+      {/* <SectionField data-cy="e2e-field-group-description-multiloc">
         <QuillMultilocWithLocaleSwitcher
           name={`customFields.${field.index}.description_multiloc`}
           label={<FormattedMessage {...messages.descriptionLabel} />}
         />
-      </SectionField>
+      </SectionField> */}
     </>
   );
 };

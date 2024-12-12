@@ -1,3 +1,4 @@
+import './wdyr';
 import React, { useEffect } from 'react';
 
 import 'assets/css/reset.min.css';
