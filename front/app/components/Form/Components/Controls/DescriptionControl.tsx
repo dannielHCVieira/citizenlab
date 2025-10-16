@@ -8,8 +8,8 @@ import { WrappedComponentProps } from 'react-intl';
 
 import { useIdeaSelect } from 'containers/IdeasNewPage/SimilarInputs/InputSelectContext';
 
+import CKEditor5 from 'components/UI/CKEditor5';
 import { FormLabel } from 'components/UI/FormComponents';
-import QuillEditor from 'components/UI/QuillEditor';
 
 import { injectIntl } from 'utils/cl-intl';
 import {
@@ -64,7 +64,7 @@ const DescriptionControl = ({
         subtextValue={getSubtextElement(uischema.options?.description)}
         subtextSupportsHtml
       />
-      <QuillEditor
+      <CKEditor5
         id={sanitizeForClassname(id)}
         value={data}
         onChange={onChange}

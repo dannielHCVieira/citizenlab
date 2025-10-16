@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, CollapsibleContainer } from '@citizenlab/cl2-component-library';
 import { useTheme } from 'styled-components';
 
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 
 interface MultilocFieldCollapsibleProps {
   title: string;
@@ -33,7 +33,7 @@ const MultilocFieldCollapsible = ({
       isOpenByDefault
     >
       <Box p="24px" pt="12px">
-        <QuillMultilocWithLocaleSwitcher
+        <CKEditor5MultilocWithLocaleSwitcher
           name={name}
           label={label}
           noVideos

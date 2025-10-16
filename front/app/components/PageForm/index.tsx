@@ -10,10 +10,10 @@ import useCustomPageById from 'api/custom_pages/useCustomPageById';
 import usePageFiles from 'api/page_files/usePageFiles';
 
 import { SectionField } from 'components/admin/Section';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Feedback from 'components/HookForm/Feedback';
 import FileUploader from 'components/HookForm/FileUploader';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import ButtonWithLink from 'components/UI/ButtonWithLink';
 
 import { FormattedMessage, useIntl } from 'utils/cl-intl';
@@ -114,7 +114,7 @@ const PageForm = ({ onSubmit, defaultValues, pageId }: Props) => {
           />
         </SectionField>
         <SectionField>
-          <QuillMultilocWithLocaleSwitcher
+          <CKEditor5MultilocWithLocaleSwitcher
             name="top_info_section_multiloc"
             label={formatMessage(messages.editContent)}
           />

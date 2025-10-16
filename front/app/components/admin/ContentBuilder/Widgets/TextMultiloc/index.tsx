@@ -7,8 +7,8 @@ import { Multiloc } from 'typings';
 
 import useLocalize from 'hooks/useLocalize';
 
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import QuillEditedContent from 'components/UI/QuillEditedContent';
-import QuillMutilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 
 import useCraftComponentDefaultPadding from '../../useCraftComponentDefaultPadding';
 import PageBreakBox from '../PageBreakBox';
@@ -51,7 +51,7 @@ const TextMultilocSettings = () => {
 
   return (
     <Box background="#ffffff" marginBottom="20px">
-      <QuillMutilocWithLocaleSwitcher
+      <CKEditor5MultilocWithLocaleSwitcher
         maxHeight="300px"
         noImages
         noVideos

@@ -29,10 +29,10 @@ import {
   SubSectionTitle,
 } from 'components/admin/Section';
 import SubmitWrapper from 'components/admin/SubmitWrapper';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import Error from 'components/UI/Error';
 import FileRepositorySelectAndUpload from 'components/UI/FileRepositorySelectAndUpload';
 import InputMultilocWithLocaleSwitcher from 'components/UI/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 
 import {
   FormattedMessage,
@@ -423,7 +423,7 @@ const AdminPhaseEdit = ({ projectId, phase }: Props) => {
                 />
               )}
             </Box>
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               id="description"
               valueMultiloc={formData.description_multiloc}
               onChange={handleEditorOnChange}

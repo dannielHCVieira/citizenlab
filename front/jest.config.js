@@ -31,6 +31,9 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/app/utils/testUtils/fileMock.js',
     '^react-scroll-to-component$': 'identity-obj-proxy',
     '@citizenlab/cl2-component-library': '<rootDir>/app/component-library',
+    '^ckeditor5$': '<rootDir>/app/utils/testUtils/ckeditor5Mock.tsx',
+    '^@ckeditor/ckeditor5-react$':
+      '<rootDir>/app/utils/testUtils/ckeditor5Mock.tsx',
   },
   modulePathIgnorePatterns: ['.*__mocks__.*'],
   testEnvironmentOptions: {

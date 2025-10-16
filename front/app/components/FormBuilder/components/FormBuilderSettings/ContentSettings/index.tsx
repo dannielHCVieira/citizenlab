@@ -11,8 +11,8 @@ import useLocale from 'hooks/useLocale';
 
 import { SectionField } from 'components/admin/Section';
 import { getAdditionalSettings } from 'components/FormBuilder/utils';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import Toggle from 'components/HookForm/Toggle';
 
 import { FormattedMessage } from 'utils/cl-intl';
@@ -30,7 +30,7 @@ const ContentSettings = ({ field }: ContentSettingsProps) => {
 
   const locales = useAppConfigurationLocales();
   const { watch } = useFormContext();
-  const lockedAttributes = field.constraints?.locks?.attributes || [];
+  const lockedAttributes = field.constraints?.locks.attributes || [];
   const platformLocale = useLocale();
   const isFieldGrouping = field.input_type === 'page';
 
@@ -81,7 +81,7 @@ const ContentSettings = ({ field }: ContentSettingsProps) => {
             </Text>
           )}
           <SectionField>
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               name={`customFields.${field.index}.description_multiloc`}
               label={
                 <FormattedMessage {...messages.questionDescriptionOptional} />

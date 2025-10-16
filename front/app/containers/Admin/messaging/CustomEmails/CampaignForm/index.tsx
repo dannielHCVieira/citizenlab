@@ -23,11 +23,11 @@ import useProjectById from 'api/projects/useProjectById';
 import useLocalize from 'hooks/useLocalize';
 
 import { Section, SectionField, SectionTitle } from 'components/admin/Section';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Feedback from 'components/HookForm/Feedback';
 import Input from 'components/HookForm/Input';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
 import MultipleSelect from 'components/HookForm/MultipleSelect';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import Select from 'components/HookForm/Select';
 
 import { FormattedMessage, useIntl } from 'utils/cl-intl';
@@ -223,7 +223,7 @@ const CampaignForm = ({
             />
           </SectionField>
           <SectionField className="e2e-campaign_body_multiloc">
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               name="body_multiloc"
               label={formatMessage(messages.fieldBody)}
               labelTooltipText={formatMessage(messages.nameVariablesInfo, {

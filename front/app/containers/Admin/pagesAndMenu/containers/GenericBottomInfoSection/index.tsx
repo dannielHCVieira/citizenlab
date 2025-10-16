@@ -11,8 +11,8 @@ import { object } from 'yup';
 
 import { ICustomPageData } from 'api/custom_pages/types';
 
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Feedback from 'components/HookForm/Feedback';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import { TBreadcrumbs } from 'components/UI/Breadcrumbs';
 import ButtonWithLink from 'components/UI/ButtonWithLink';
 
@@ -116,7 +116,7 @@ const GenericBottomInfoSection = ({
         >
           <Feedback successMessage={formatMessage(messages.messageSuccess)} />
           <Box maxWidth={`${theme.maxPageWidth - 100}px`} mb="24px">
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               name="bottom_info_section_multiloc"
               label={formatMessage(messages.contentEditorTitle)}
               withCTAButton

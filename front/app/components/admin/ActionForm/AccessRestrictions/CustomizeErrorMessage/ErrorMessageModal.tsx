@@ -17,7 +17,7 @@ import useLocale from 'hooks/useLocale';
 
 import accessDeniedMessages from 'containers/Authentication/steps/AccessDenied/messages';
 
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Modal from 'components/UI/Modal';
 
 import { FormattedMessage } from 'utils/cl-intl';
@@ -109,7 +109,7 @@ const ErrorMessageModal = ({
         </Box>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleSubmit)}>
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               label={<FormattedMessage {...messages.alternativeErrorMessage} />}
               name="access_denied_explanation_multiloc"
             />

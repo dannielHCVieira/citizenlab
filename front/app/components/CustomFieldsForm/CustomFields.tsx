@@ -8,10 +8,10 @@ import { IPhaseData, ParticipationMethod } from 'api/phases/types';
 import useLocalize from 'hooks/useLocalize';
 
 import { getSubtextElement } from 'components/Form/Components/Controls/controlUtils';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Input from 'components/HookForm/Input';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
 import LocationInput from 'components/HookForm/LocationInput';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import TextArea from 'components/HookForm/TextArea';
 import Topics from 'components/HookForm/Topics';
 import { FormLabel } from 'components/UI/FormComponents';
@@ -58,7 +58,7 @@ const renderField = ({
       );
     case 'html_multiloc':
       return (
-        <QuillMultilocWithLocaleSwitcher
+        <CKEditor5MultilocWithLocaleSwitcher
           name={question.key}
           hideLocaleSwitcher
           scrollErrorIntoView={true}
@@ -237,7 +237,7 @@ const CustomFields = ({
                 </Text>
               )}
               {renderField({ question, projectId, ideaId })}
-              {question?.code && inputIqFields.includes(question.code) && (
+              {question.code && inputIqFields.includes(question.code) && (
                 <InputIQ phase={phase} field={question} />
               )}
             </Box>

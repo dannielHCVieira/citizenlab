@@ -24,9 +24,9 @@ import { appLocalePairs } from 'containers/App/constants';
 
 import SeatInfo from 'components/admin/SeatBasedBilling/SeatInfo';
 import { SectionField } from 'components/admin/Section';
+import CKEditor5 from 'components/UI/CKEditor5';
 import Collapse from 'components/UI/Collapse';
 import MultipleSelect from 'components/UI/MultipleSelect';
-import QuillEditor from 'components/UI/QuillEditor';
 import Warning from 'components/UI/Warning';
 
 import { FormattedMessage, useIntl } from 'utils/cl-intl';
@@ -257,7 +257,7 @@ const InvitationOptions = ({
           <Label>
             <FormattedMessage {...messages.inviteTextLabel} />
           </Label>
-          <QuillEditor
+          <CKEditor5
             id="invite-text"
             value={selectedInviteText || ''}
             onChange={handleInviteTextOnChange}

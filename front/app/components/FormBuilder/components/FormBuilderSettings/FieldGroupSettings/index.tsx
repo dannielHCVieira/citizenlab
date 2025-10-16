@@ -5,8 +5,8 @@ import { SupportedLocale } from 'typings';
 import { IFlatCustomFieldWithIndex } from 'api/custom_fields/types';
 
 import { SectionField } from 'components/admin/Section';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 
 import { FormattedMessage } from 'utils/cl-intl';
 
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const FieldGroupSettings = ({ field, locale }: Props) => {
-  const lockedAttributes = field?.constraints?.locks?.attributes || [];
+  const lockedAttributes = field.constraints?.locks.attributes || [];
   const handleKeyDown = (event: React.KeyboardEvent<Element>) => {
     // We want to prevent the form builder from being closed when enter is pressed
     if (event.key === 'Enter') {
@@ -40,7 +40,7 @@ const FieldGroupSettings = ({ field, locale }: Props) => {
         </SectionField>
       )}
       <SectionField data-cy="e2e-field-group-description-multiloc">
-        <QuillMultilocWithLocaleSwitcher
+        <CKEditor5MultilocWithLocaleSwitcher
           name={`customFields.${field.index}.description_multiloc`}
           label={<FormattedMessage {...messages.descriptionLabel} />}
         />

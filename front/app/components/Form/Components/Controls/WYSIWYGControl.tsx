@@ -9,8 +9,8 @@ import {
 import { withJsonFormsControlProps } from '@jsonforms/react';
 import { WrappedComponentProps } from 'react-intl';
 
+import CKEditor5 from 'components/UI/CKEditor5';
 import { FormLabel } from 'components/UI/FormComponents';
-import QuillEditor from 'components/UI/QuillEditor';
 
 import { injectIntl } from 'utils/cl-intl';
 import { getLabel, sanitizeForClassname } from 'utils/JSONFormUtils';
@@ -45,7 +45,7 @@ const WYSIWYGControl = ({
         subtextValue={getSubtextElement(uischema.options?.description)}
         subtextSupportsHtml
       />
-      <QuillEditor
+      <CKEditor5
         id={sanitizeForClassname(id)}
         value={data}
         onChange={(value) => handleChange(path, value)}

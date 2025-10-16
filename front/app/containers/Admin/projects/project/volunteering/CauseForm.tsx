@@ -9,10 +9,10 @@ import { mixed, object, array } from 'yup';
 import useContainerWidthAndHeight from 'hooks/useContainerWidthAndHeight';
 
 import { SectionField } from 'components/admin/Section';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Feedback from 'components/HookForm/Feedback';
 import ImagesDropzone from 'components/HookForm/ImagesDropzone';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import ButtonWithLink from 'components/UI/ButtonWithLink';
 
 import { useIntl } from 'utils/cl-intl';
@@ -101,7 +101,7 @@ const CauseForm = ({ onSubmit, defaultValues, imageUrl }: PageFormProps) => {
             />
           </SectionField>
           <SectionField>
-            <QuillMultilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               name="description_multiloc"
               noVideos
               limitedTextFormatting

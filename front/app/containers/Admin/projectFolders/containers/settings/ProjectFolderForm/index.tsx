@@ -33,9 +33,9 @@ import {
 } from 'components/admin/Section';
 import SlugInput from 'components/admin/SlugInput';
 import SubmitWrapper from 'components/admin/SubmitWrapper';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import FileUploader from 'components/UI/FileUploader';
 import InputMultilocWithLocaleSwitcher from 'components/UI/InputMultilocWithLocaleSwitcher';
-import QuillMutilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 import TextAreaMultilocWithLocaleSwitcher from 'components/UI/TextAreaMultilocWithLocaleSwitcher';
 
 import { FormattedMessage } from 'utils/cl-intl';
@@ -606,7 +606,7 @@ const ProjectFolderForm = ({ mode, projectFolderId }: Props) => {
             />
           </Box>
           <Box data-cy="e2e-project-folder-description">
-            <QuillMutilocWithLocaleSwitcher
+            <CKEditor5MultilocWithLocaleSwitcher
               id="description"
               valueMultiloc={descriptionMultiloc}
               onChange={getHandler(setDescriptionMultiloc)}

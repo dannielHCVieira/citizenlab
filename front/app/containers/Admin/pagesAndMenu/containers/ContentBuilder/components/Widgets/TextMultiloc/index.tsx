@@ -10,8 +10,8 @@ import useLocalize from 'hooks/useLocalize';
 import useCraftComponentDefaultPadding from 'components/admin/ContentBuilder/useCraftComponentDefaultPadding';
 import PageBreakBox from 'components/admin/ContentBuilder/Widgets/PageBreakBox';
 import messages from 'components/admin/ContentBuilder/Widgets/TextMultiloc/messages';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import QuillEditedContent from 'components/UI/QuillEditedContent';
-import QuillMutilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 
 import { DEFAULT_Y_PADDING } from '../constants';
 
@@ -52,7 +52,7 @@ const TextMultilocSettings = () => {
 
   return (
     <Box background="#ffffff" marginBottom="20px">
-      <QuillMutilocWithLocaleSwitcher
+      <CKEditor5MultilocWithLocaleSwitcher
         maxHeight="300px"
         noImages
         noVideos

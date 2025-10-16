@@ -18,7 +18,7 @@ import useFeatureFlag from 'hooks/useFeatureFlag';
 
 import messages from 'containers/ProjectDescriptionBuilder/messages';
 
-import QuillMultilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import Warning from 'components/UI/Warning';
 
 import { injectIntl } from 'utils/cl-intl';
@@ -122,7 +122,7 @@ const ProjectDescriptionBuilderToggle = ({
         </>
       )}
       {!projectDescriptionBuilderLinkVisible && (
-        <QuillMultilocWithLocaleSwitcher
+        <CKEditor5MultilocWithLocaleSwitcher
           id="e2e-project-description-multiloc-module-active"
           valueMultiloc={valueMultiloc}
           onChange={onChange}

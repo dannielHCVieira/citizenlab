@@ -26,10 +26,10 @@ import { appLocalePairs } from 'containers/App/constants';
 
 import { SectionField } from 'components/admin/Section';
 import ContentUploadDisclaimer from 'components/ContentUploadDisclaimer';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Feedback from 'components/HookForm/Feedback';
 import ImagesDropzone from 'components/HookForm/ImagesDropzone';
 import Input from 'components/HookForm/Input';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 import Select from 'components/HookForm/Select';
 import commentsMessages from 'components/PostShowComponents/Comments/messages';
 import Error from 'components/UI/Error';
@@ -280,7 +280,7 @@ const ProfileForm = () => {
           </SectionField>
           {!disableBio && (
             <SectionField>
-              <QuillMultilocWithLocaleSwitcher
+              <CKEditor5MultilocWithLocaleSwitcher
                 name="bio_multiloc"
                 noImages
                 noVideos

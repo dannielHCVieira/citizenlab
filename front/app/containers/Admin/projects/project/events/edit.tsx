@@ -41,13 +41,13 @@ import ImageCropperContainer from 'components/admin/ImageCropper/Container';
 import { Section, SectionTitle, SectionField } from 'components/admin/Section';
 import SubmitWrapper from 'components/admin/SubmitWrapper';
 import ButtonWithLink from 'components/UI/ButtonWithLink';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import ErrorComponent from 'components/UI/Error';
 import FileRepositorySelectAndUpload from 'components/UI/FileRepositorySelectAndUpload';
 import GoBackButton from 'components/UI/GoBackButton';
 import ImagesDropzone from 'components/UI/ImagesDropzone';
 import InputMultilocWithLocaleSwitcher from 'components/UI/InputMultilocWithLocaleSwitcher';
 import LocationInput, { Option } from 'components/UI/LocationInput';
-import QuillMultilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 
 import { FormattedMessage, useIntl } from 'utils/cl-intl';
 import clHistory from 'utils/cl-router/history';
@@ -647,7 +647,7 @@ const AdminProjectEventEdit = () => {
 
               <SectionField className="fullWidth">
                 <Box width="860px">
-                  <QuillMultilocWithLocaleSwitcher
+                  <CKEditor5MultilocWithLocaleSwitcher
                     id="description"
                     label={<FormattedMessage {...messages.descriptionLabel} />}
                     valueMultiloc={eventAttrs.description_multiloc}

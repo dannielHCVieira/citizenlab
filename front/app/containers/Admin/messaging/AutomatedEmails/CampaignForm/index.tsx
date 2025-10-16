@@ -17,9 +17,9 @@ import useAuthUser from 'api/me/useAuthUser';
 import messages from 'containers/Admin/messaging/messages';
 
 import { Section, SectionField } from 'components/admin/Section';
+import CKEditor5MultilocWithLocaleSwitcher from 'components/HookForm/CKEditor5MultilocWithLocaleSwitcher';
 import Input from 'components/HookForm/Input';
 import InputMultilocWithLocaleSwitcher from 'components/HookForm/InputMultilocWithLocaleSwitcher';
-import QuillMultilocWithLocaleSwitcher from 'components/HookForm/QuillMultilocWithLocaleSwitcher';
 
 import { FormattedMessage, useIntl } from 'utils/cl-intl';
 import { handleHookFormSubmissionError } from 'utils/errorUtils';
@@ -140,7 +140,7 @@ const EditCampaignForm = ({
               key={region.key}
             >
               {region.type === 'html' && (
-                <QuillMultilocWithLocaleSwitcher
+                <CKEditor5MultilocWithLocaleSwitcher
                   name={region.key}
                   label={regionFieldLabel(region)}
                   labelTooltipText={variablesTooltipText}

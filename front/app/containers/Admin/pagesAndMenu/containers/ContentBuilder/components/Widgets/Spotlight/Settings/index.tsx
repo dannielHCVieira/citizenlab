@@ -3,8 +3,8 @@ import React from 'react';
 import { Box, Toggle } from '@citizenlab/cl2-component-library';
 import { useNode } from '@craftjs/core';
 
+import CKEditor5MultilocWithLocaleSwitcher from 'components/UI/CKEditor5/CKEditor5MultilocWithLocaleSwitcher';
 import InputMultilocWithLocaleSwitcher from 'components/UI/InputMultilocWithLocaleSwitcher';
-import QuillMutilocWithLocaleSwitcher from 'components/UI/QuillEditor/QuillMultilocWithLocaleSwitcher';
 
 import { useIntl } from 'utils/cl-intl';
 
@@ -66,7 +66,7 @@ const Settings = () => {
         />
       </Box>
       <Box mb="20px">
-        <QuillMutilocWithLocaleSwitcher
+        <CKEditor5MultilocWithLocaleSwitcher
           maxHeight="240px"
           noImages
           noVideos
