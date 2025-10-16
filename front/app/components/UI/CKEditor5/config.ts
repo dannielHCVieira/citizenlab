@@ -143,14 +143,26 @@ export function getEditorConfig(options: ConfigOptions = {}): EditorConfig {
   // Image configuration
   if (!noImages) {
     config.image = {
+      styles: {
+        options: [
+          'inline',
+          'alignLeft',
+          'alignCenter',
+          'alignRight',
+          'alignBlockLeft',
+          'alignBlockRight',
+          'block',
+          'side',
+        ],
+      },
       toolbar: [
-        'imageTextAlternative', // Alt text
+        'imageTextAlternative',
         'toggleImageCaption',
         '|',
         'imageStyle:inline',
-        'imageStyle:alignLeft',
+        'imageStyle:alignBlockLeft',
         'imageStyle:alignCenter',
-        'imageStyle:alignRight',
+        'imageStyle:alignBlockRight',
         '|',
         'resizeImage',
       ],
