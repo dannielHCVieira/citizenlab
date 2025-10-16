@@ -1,4 +1,11 @@
-import React, { useRef, useState, useLayoutEffect, useCallback } from 'react';
+import React, {
+  useRef,
+  useState,
+  useLayoutEffect,
+  useCallback,
+  useMemo,
+  useEffect,
+} from 'react';
 
 import { Label, IconTooltip, Box } from '@citizenlab/cl2-component-library';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -52,6 +59,7 @@ const CKEditor5 = ({
   const [focussed, setFocussed] = useState(false);
   const [charCount, setCharCount] = useState(0);
   const htmlRef = useRef<string | null>(null);
+  const charCountTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const onChangeRef = useRef(onChange);
   const onBlurRef = useRef(onBlur);
@@ -63,15 +71,36 @@ const CKEditor5 = ({
     onFocusRef.current = onFocus;
   });
 
-  const config: EditorConfig = getEditorConfig({
-    noImages,
-    noVideos,
-    noLinks,
-    noAlign,
-    limitedTextFormatting,
-    withCTAButton,
-    maxCharCount,
-  });
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (charCountTimerRef.current) {
+        clearTimeout(charCountTimerRef.current);
+      }
+    };
+  }, []);
+
+  const config: EditorConfig = useMemo(
+    () =>
+      getEditorConfig({
+        noImages,
+        noVideos,
+        noLinks,
+        noAlign,
+        limitedTextFormatting,
+        withCTAButton,
+        maxCharCount,
+      }),
+    [
+      noImages,
+      noVideos,
+      noLinks,
+      noAlign,
+      limitedTextFormatting,
+      withCTAButton,
+      maxCharCount,
+    ]
+  );
 
   const handleReady = (editorInstance: ClassicEditor) => {
     setEditor(editorInstance);
@@ -82,19 +111,29 @@ const CKEditor5 = ({
     setCharCount(plainText.length);
   };
 
-  const handleChange = (_event: EventInfo, editorInstance: ClassicEditor) => {
-    const html = editorInstance.getData();
+  const handleChange = useCallback(
+    (_event: EventInfo, editorInstance: ClassicEditor) => {
+      const html = editorInstance.getData();
 
-    if (html === htmlRef.current) return;
+      if (html === htmlRef.current) return;
 
-    htmlRef.current = html;
+      htmlRef.current = html;
 
-    // Update character count
-    const plainText = extractPlainText(html);
-    setCharCount(plainText.length);
+      // Debounce character count updates to avoid DOM manipulation on every keystroke
+      if (maxCharCount || minCharCount) {
+        if (charCountTimerRef.current) {
+          clearTimeout(charCountTimerRef.current);
+        }
+        charCountTimerRef.current = setTimeout(() => {
+          const plainText = extractPlainText(html);
+          setCharCount(plainText.length);
+        }, 150);
+      }
 
-    onChangeRef.current?.(html);
-  };
+      onChangeRef.current?.(html);
+    },
+    [maxCharCount, minCharCount]
+  );
 
   const handleFocus = () => {
     setFocussed(true);
