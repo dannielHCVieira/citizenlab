@@ -18,7 +18,12 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "incremental": true,
-    "types": ["vite/client", "jest", "@testing-library/jest-dom"],
+    "types": [
+      "vite/client",
+      "jest",
+      "@testing-library/jest-dom",
+      "@react-router/dev"
+    ],
     "plugins": [
       {
         "name": "typescript-styled-plugin"
@@ -37,7 +42,10 @@
     "../vite-env.d.ts",
     "../jest.config.js",
     "../internals/jest/setup.js",
-    "globals.d.ts"
+    "globals.d.ts",
+    ".react-router/types/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+
+  "rootDirs": [".", "./.react-router/types"]
 }

@@ -1,5 +1,7 @@
 import React, { lazy } from 'react';
 
+import { RouteObject } from 'react-router';
+
 import PageLoading from 'components/UI/PageLoading';
 
 import RelativeNavigate from 'utils/cl-router/RelativeNavigate';
@@ -32,67 +34,70 @@ export type messagingRouteTypes =
   | AdminRoute<`${messagingRoutes.messaging}/${messagingRoutes.emailsAutomated}`>
   | AdminRoute<`${messagingRoutes.messaging}/${messagingRoutes.emailsAutomated}/${string}/edit`>;
 
-const createAdminMessagingRoutes = () => ({
-  path: messagingRoutes.messaging,
-  element: (
-    <PageLoading>
-      <MessagingIndex />
-    </PageLoading>
-  ),
-  children: [
+const createAdminMessagingRoutes = () =>
+  [
     {
-      path: '',
-      element: <RelativeNavigate to={messagingRoutes.emailsCustom} />,
-    },
-    {
-      path: messagingRoutes.emailsCustom,
+      path: messagingRoutes.messaging,
       element: (
         <PageLoading>
-          <CustomEmailsIndex />
+          <MessagingIndex />
         </PageLoading>
       ),
+      children: [
+        {
+          path: '',
+          element: <RelativeNavigate to={messagingRoutes.emailsCustom} />,
+        },
+        {
+          path: messagingRoutes.emailsCustom,
+          element: (
+            <PageLoading>
+              <CustomEmailsIndex />
+            </PageLoading>
+          ),
+        },
+        {
+          path: messagingRoutes.emailsCustomNew,
+          element: (
+            <PageLoading>
+              <CustomEmailsNew />
+            </PageLoading>
+          ),
+        },
+        {
+          path: messagingRoutes.emailsCustomCampaignId,
+          element: (
+            <PageLoading>
+              <CustomEmailsShow />
+            </PageLoading>
+          ),
+        },
+        {
+          path: messagingRoutes.emailsCustomCampaignIdEdit,
+          element: (
+            <PageLoading>
+              <EmailsEdit campaignType="custom" />
+            </PageLoading>
+          ),
+        },
+        {
+          path: messagingRoutes.emailsAutomated,
+          element: (
+            <PageLoading>
+              <AutomatedEmails />
+            </PageLoading>
+          ),
+        },
+        {
+          path: messagingRoutes.emailsAutomatedCampaignIdEdit,
+          element: (
+            <PageLoading>
+              <EmailsEdit campaignType="automated" />
+            </PageLoading>
+          ),
+        },
+      ],
     },
-    {
-      path: messagingRoutes.emailsCustomNew,
-      element: (
-        <PageLoading>
-          <CustomEmailsNew />
-        </PageLoading>
-      ),
-    },
-    {
-      path: messagingRoutes.emailsCustomCampaignId,
-      element: (
-        <PageLoading>
-          <CustomEmailsShow />
-        </PageLoading>
-      ),
-    },
-    {
-      path: messagingRoutes.emailsCustomCampaignIdEdit,
-      element: (
-        <PageLoading>
-          <EmailsEdit campaignType="custom" />
-        </PageLoading>
-      ),
-    },
-    {
-      path: messagingRoutes.emailsAutomated,
-      element: (
-        <PageLoading>
-          <AutomatedEmails />
-        </PageLoading>
-      ),
-    },
-    {
-      path: messagingRoutes.emailsAutomatedCampaignIdEdit,
-      element: (
-        <PageLoading>
-          <EmailsEdit campaignType="automated" />
-        </PageLoading>
-      ),
-    },
-  ],
-});
+  ] satisfies RouteObject[];
 
 export default createAdminMessagingRoutes;
