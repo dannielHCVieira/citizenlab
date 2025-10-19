@@ -1,0 +1,60 @@
+name: E2E Tests - Cypress
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+
+env:
+  CYPRESS_CACHE_FOLDER: .cache/cypress
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ${{ env.CYPRESS_CACHE_FOLDER }}
+          key: ${{ runner.os }}-node-cypress-${{ hashFiles('package-lock.json', 'package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-cypress-
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build TypeScript
+        run: npm run build --if-present
+        continue-on-error: true
+      
+      - name: Run E2E Tests
+        run: npx cypress run --spec "front/cypress/e2e/about_page.cy.ts,front/cypress/e2e/blocked-users.cy.ts,front/cypress/e2e/budgeting_permissions.cy.ts,front/cypress/e2e/commenting_anonymous.cy.ts,front/cypress/e2e/comment_voting_permissions.cy.ts,front/cypress/e2e/create_idea_in_any_phase.cy.ts,front/cypress/e2e/email_consent.cy.ts,front/cypress/e2e/folder_page.cy.ts,front/cypress/e2e/idea_card.cy.ts,front/cypress/e2e/idea_cards.cy.ts,front/cypress/e2e/idea_commenting_permissions.cy.ts,front/cypress/e2e/idea_edit_page.cy.ts,front/cypress/e2e/idea_form_settings.cy.ts,front/cypress/e2e/idea_new_page.cy.ts,front/cypress/e2e/idea_page_action.cy.ts,front/cypress/e2e/idea_page_content.cy.ts,front/cypress/e2e/idea_posting_anonymous.cy.ts,front/cypress/e2e/idea_posting_permissions.cy.ts,front/cypress/e2e/idea_voting_permissions.cy.ts,front/cypress/e2e/impact_tracking.cy.ts,front/cypress/e2e/landing_page.cy.ts,front/cypress/e2e/native_survey_page_action.cy.ts,front/cypress/e2e/native_survey_permissions.cy.ts,front/cypress/e2e/nav_bar.cy.ts,front/cypress/e2e/profile_edition.cy.ts,front/cypress/e2e/profile_page.cy.ts,front/cypress/e2e/projects_index_page.cy.ts,front/cypress/e2e/project_cards.cy.ts,front/cypress/e2e/project_page_ideas.cy.ts,front/cypress/e2e/project_page_information.cy.ts,front/cypress/e2e/project_page_native_survey.cy.ts,front/cypress/e2e/project_page_poll.cy.ts,front/cypress/e2e/project_page_survey.cy.ts,front/cypress/e2e/project_page_timeline.cy.ts,front/cypress/e2e/project_page_volunteering.cy.ts,front/cypress/e2e/project_page_voting_budgeting.cy.ts,front/cypress/e2e/project_page_voting_mulitple.cy.ts,front/cypress/e2e/project_page_voting_single.cy.ts,front/cypress/e2e/project_topics.cy.ts,front/cypress/e2e/proposal_card.cy.ts,front/cypress/e2e/proposal_cards.cy.ts,front/cypress/e2e/proposal_edit_page.cy.ts,front/cypress/e2e/proposal_new_page.cy.ts,front/cypress/e2e/proposal_page_action.cy.ts,front/cypress/e2e/proposal_page_content.cy.ts,front/cypress/e2e/proposal_posting_anonymous.cy.ts,front/cypress/e2e/router_history.cy.ts,front/cypress/e2e/admin/admin.cy.ts,front/cypress/e2e/admin/initiative_manager.cy.ts,front/cypress/e2e/admin/input_manager.cy.ts,front/cypress/e2e/admin/analysis/ideation_analysis.cy.ts,front/cypress/e2e/admin/analysis/survey_analysis.cy.ts,front/cypress/e2e/admin/dashboards/summary.cy.ts,front/cypress/e2e/admin/folders/add_project_to_folder.cy.ts,front/cypress/e2e/admin/internal_comments/idea_internal_comments.cy.ts,front/cypress/e2e/admin/internal_comments/initiative_internal_comments.cy.ts,front/cypress/e2e/admin/pages_and_menu/create_update_and_view_custom_page.cy.ts,front/cypress/e2e/admin/projects/add_project.cy.ts,front/cypress/e2e/admin/projects/configure_project_map.cy.ts,front/cypress/e2e/admin/projects/copy_project.cy.ts,front/cypress/e2e/admin/projects/delete_project.cy.ts,front/cypress/e2e/admin/projects/edit_project.cy.ts,front/cypress/e2e/admin/projects/input_manager.cy.ts,front/cypress/e2e/admin/projects/project_access_rights.cy.ts,front/cypress/e2e/admin/users/block-users.cy.ts,front/cypress/e2e/admin/users/overview.cy.ts,front/cypress/e2e/admin/users/seat-billing.cy.ts,front/cypress/e2e/auth/cookie_consent.cy.ts,front/cypress/e2e/auth/invitation_authentication_flow.cy.ts,front/cypress/e2e/auth/light_authentication_flow.cy.ts,front/cypress/e2e/auth/password-reset.cy.ts,front/cypress/e2e/auth/profile-verification.cy.ts,front/cypress/e2e/auth/sign_in.cy.ts,front/cypress/e2e/auth/sign_up_custom_fields.cy.ts,front/cypress/e2e/auth/sign_up_email_password.cy.ts,front/cypress/e2e/auth/verification_modal.cy.ts,front/cypress/e2e/auth/verified_locked_fields.cy.ts,front/cypress/e2e/events/events_page.cy.ts,front/cypress/e2e/events/event_preview_cards.cy.ts,front/cypress/e2e/events/event_show_page.cy.ts,front/cypress/e2e/follow/follow_area.cy.ts,front/cypress/e2e/follow/follow_auth_flow.cy.ts,front/cypress/e2e/follow/follow_folder.cy.ts,front/cypress/e2e/follow/follow_idea.cy.ts,front/cypress/e2e/follow/follow_initiative.cy.ts,front/cypress/e2e/follow/follow_project.cy.ts,front/cypress/e2e/follow/follow_topic.cy.ts,front/cypress/e2e/form_builder/elements/file_upload_field.cy.ts,front/cypress/e2e/form_builder/elements/image_multiple_choice.cy.ts,front/cypress/e2e/form_builder/elements/linear_scale_field.cy.ts,front/cypress/e2e/form_builder/elements/long_field.cy.ts,front/cypress/e2e/form_builder/elements/multiple_choice_field.cy.ts,front/cypress/e2e/form_builder/elements/number_field.cy.ts,front/cypress/e2e/form_builder/elements/page_element.cy.ts,front/cypress/e2e/form_builder/elements/point_field.cy.ts,front/cypress/e2e/form_builder/elements/single_choice_field.cy.ts,front/cypress/e2e/input_form_builder/create_and_fill_form.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/attachments.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/description.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/images.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/location.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/proposed_budget.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/tags.cy.ts,front/cypress/e2e/input_form_builder/built-in-fields/title.cy.ts,front/cypress/e2e/project_description_builder/language_switch.cy.ts,front/cypress/e2e/project_description_builder/project_description_builder_navigation.cy.ts,front/cypress/e2e/project_description_builder/project_description_builder_preview_toggle.cy.ts,front/cypress/e2e/project_description_builder/project_description_builder_settings.cy.ts,front/cypress/e2e/project_description_builder/project_description_builder_toggle.cy.ts,front/cypress/e2e/project_description_builder/components/about_component.cy.ts,front/cypress/e2e/project_description_builder/components/accordion_component.cy.ts,front/cypress/e2e/project_description_builder/components/button_component.cy.ts,front/cypress/e2e/project_description_builder/components/iframe_component.cy.ts,front/cypress/e2e/project_description_builder/components/image_component.cy.ts,front/cypress/e2e/project_description_builder/components/text_component.cy.ts,front/cypress/e2e/project_description_builder/components/three_column_component.cy.ts,front/cypress/e2e/project_description_builder/components/two_column_component.cy.ts,front/cypress/e2e/project_description_builder/components/white_space_component.cy.ts,front/cypress/e2e/project_description_builder/sections/image_text_cards_section.cy.ts,front/cypress/e2e/project_description_builder/sections/info_accordions_section.cy.ts,front/cypress/e2e/report_builder/broken_report.cy.ts,front/cypress/e2e/report_builder/global_report.cy.ts,front/cypress/e2e/report_builder/idea_template.cy.ts,front/cypress/e2e/report_builder/phase_report.cy.ts,front/cypress/e2e/report_builder/survey_template.cy.ts,front/cypress/e2e/report_builder/widgets/ai_widget.cy.ts,front/cypress/e2e/report_builder/widgets/demographics_widget.cy.ts,front/cypress/e2e/report_builder/widgets/survey_question_widget.cy.ts,front/cypress/e2e/survey_builder/create_and_fill_survey.cy.ts"
+        continue-on-error: false
+      
+      - name: Upload Cypress screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+      
+      - name: Upload Cypress videos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore
